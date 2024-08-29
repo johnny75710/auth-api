@@ -49,6 +49,25 @@ defmodule RealDealApi.Accounts do
       {:error, %Ecto.Changeset{}}
 
   """
+
+  def get_account_by_email(email) do
+    Account
+    |> where(email: ^email)
+    |> Repo.one()
+  end
+  @doc """
+  Gets a single account.
+
+  Returns `nil` if the account does not exist.
+
+    ## Examples
+
+      iex> get_account_by_email(test@email.com)
+      %Account{}
+
+      iex> get_account_by_email(non_existing@email.com)
+      nil
+  """
   def create_account(attrs \\ %{}) do
     %Account{}
     |> Account.changeset(attrs)
